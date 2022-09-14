@@ -41,7 +41,7 @@ public class PriorQueue {
         this.n=arr.length-1;
     }
     public void runMaxHeap(){
-        for(int i=n/2;i>=0;i--){
+        for(int i=n/2-1;i>=0;i--){
             maxheap(i);
         }
     }
@@ -51,14 +51,14 @@ public class PriorQueue {
         }
     }
     public void runMinHeap(){
-        for(int i=n/2;i>=0;i--){
+        for(int i=n/2-1;i>=0;i--){
             minheap(i);
         }
     }
     public void maxHeapSort(){
         int heapSize=n;
         runMaxHeap();
-        for(int i=n;i>=1;i--){
+        for(int i=n;i>=0;i--){
             swap(0,i);//doi vi tri cuoi cung
             n--;
             maxheap(0);
@@ -73,15 +73,10 @@ public class PriorQueue {
         }else{
             n++;
             int k=n;
-            int[] res=new int[k+1];
-            for(int i=0;i<n-1;i++){
-                res[i]=arr[i];
-            }
-            res[n-1]=element;
-            arr=res;
-            while (k>0 && arr[k/2]<arr[k]){
-                swap(k/2,k);
-                k=k/2;
+            arr[n]=val;
+            while (k>0 && arr[k/2]>arr[k]){
+                swap((k-1)/2,k);
+                k=(k-1)/2;
             }
         }
     }
